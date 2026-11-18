@@ -121,7 +121,7 @@ private Q_SLOTS:
         pagination.setTimelineModel(&live);
         pagination.setRoomId(kGeneral);
         int opened = 0;
-        pagination.setContextOpener([&](const QString &id) {
+        pagination.setContextOpener([&](const QString &id, qreal) {
             ++opened;
             return context.open(kGeneral, id);
         });
@@ -172,7 +172,7 @@ private Q_SLOTS:
         pagination.setClient(&client);
         pagination.setTimelineModel(&emptyLive);
         pagination.setRoomId(kGeneral);
-        pagination.setContextOpener([&](const QString &id) {
+        pagination.setContextOpener([&](const QString &id, qreal) {
             return context.open(kGeneral, id);
         });
         const QString target = middleEventId(client);
@@ -205,7 +205,7 @@ private Q_SLOTS:
         pagination.setClient(&client);
         pagination.setTimelineModel(&emptyLive);
         pagination.setRoomId(kGeneral);
-        pagination.setContextOpener([&](const QString &id) {
+        pagination.setContextOpener([&](const QString &id, qreal) {
             return context.open(kGeneral, id);
         });
         QVERIFY(!context.open(kGeneral, QStringLiteral("$x:mock.local")));
@@ -228,7 +228,7 @@ private Q_SLOTS:
         pagination.setClient(&client);
         pagination.setTimelineModel(&emptyLive);
         pagination.setRoomId(kGeneral);
-        pagination.setContextOpener([&](const QString &id) {
+        pagination.setContextOpener([&](const QString &id, qreal) {
             return context.open(kGeneral, id);
         });
         connect(&context, &ContextController::openFailed, &pagination,
